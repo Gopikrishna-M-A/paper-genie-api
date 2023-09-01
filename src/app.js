@@ -26,19 +26,15 @@ app.use(cors(corsOptions));
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 24 * 60 * 60 * 1000, // 1 day
-      secure: true, // Set to true in production with HTTPS
-      sameSite: 'none',
-    }
+    resave: false,
+    saveUninitialized: false,
+
   })
 )
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(passport.initialize());
-// app.use(passport.session());
-app.use(passport.authenticate('session'));
+app.use(passport.session());
+
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));

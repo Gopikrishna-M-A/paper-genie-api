@@ -23,15 +23,20 @@ const corsOptions = {
 app.use(logger('dev'));
 
 app.use(cors(corsOptions));
+app.use(cookieParser());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+      secure: true, // Set to true in production with HTTPS
+      sameSite: 'none',
+    }
   })
 )
-// app.use(cookieParser());
+
 app.use(passport.initialize());
 app.use(passport.session());
 

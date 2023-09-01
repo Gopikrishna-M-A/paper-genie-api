@@ -5,7 +5,7 @@ import User from './models/userModel.js'
 
 passport.use(
   new LocalStrategy(async (username, password, done) => {
-    console.log("\n username, password:",username,password);
+    // console.log("\n username, password:",username,password);
 
     try {
       const user = await User.findOne({ username });

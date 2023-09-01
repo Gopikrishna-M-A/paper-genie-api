@@ -73,7 +73,7 @@ export const logout = (req, res) => {
 
 
 export const check =  (req, res) => {
-  console.log("\n auth check :",req.session.passport.user);
+  // console.log("\n auth check :",req.session.passport.user);
 
   if (req.isAuthenticated()) {
     return res.status(200).json({

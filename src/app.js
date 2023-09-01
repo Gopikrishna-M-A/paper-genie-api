@@ -21,17 +21,21 @@ const corsOptions = {
   optionsSuccessStatus: 204,
 };
 app.use(logger('dev'));
-app.use(cookieParser());
+
 app.use(cors(corsOptions));
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
     cookie: {
       maxAge: 24 * 60 * 60 * 1000, // 1 day
+      secure: true, // Set to true in production with HTTPS
+      sameSite: 'none',
     }
   })
 )
-
+app.use(cookieParser());
 app.use(passport.initialize());
 // app.use(passport.session());
 app.use(passport.authenticate('session'));

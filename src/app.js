@@ -2,6 +2,7 @@ import express from 'express';
 import questionRoutes from './routes/questions.js'; 
 import userRoutes from './routes/users.js'
 import './config.js';
+import logger from 'morgan'
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -19,18 +20,14 @@ const corsOptions = {
   preflightContinue: false,
   optionsSuccessStatus: 204,
 };
-
+app.use(logger('dev'));
 app.use(cookieParser());
 
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
     cookie: {
       maxAge: 24 * 60 * 60 * 1000, // 1 day
-      secure: true,// Set to true in production with HTTPS
-      sameSite: 'none', 
     }
   })
 )

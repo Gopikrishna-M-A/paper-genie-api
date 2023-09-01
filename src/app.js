@@ -22,7 +22,7 @@ const corsOptions = {
 };
 app.use(logger('dev'));
 app.use(cookieParser());
-
+app.use(cors(corsOptions));
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -38,7 +38,7 @@ app.use(passport.authenticate('session'));
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors(corsOptions));
+
 
 app.use('/questions', questionRoutes);
 app.use('/auth', userRoutes);

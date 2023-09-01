@@ -73,6 +73,8 @@ export const logout = (req, res) => {
 
 
 export const check =  (req, res) => {
+  console.log("\n auth check :",req.session.passport.user);
+
   if (req.isAuthenticated()) {
     return res.status(200).json({
       isAuthenticated: true,
@@ -92,7 +94,6 @@ export const addSubject = async(req,res) => {
   try {
     // Find the user by their ID
     const user = await User.findById(userId);
-
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }

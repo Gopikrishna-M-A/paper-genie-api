@@ -13,7 +13,7 @@ import './passport-config.js';
 const app = express();
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'https://paper-genie-client.onrender.com',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   preflightContinue: false,

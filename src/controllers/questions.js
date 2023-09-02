@@ -72,8 +72,7 @@ export const addQuestion = async (req, res) => {
           opta,
           optb,
           optc,
-          optd,
-          space
+          optd
         } = req.body
 
         let imageSrc
@@ -100,7 +99,6 @@ export const addQuestion = async (req, res) => {
           optb,
           optc,
           optd,
-          space
         }
 
 

@@ -14,13 +14,13 @@ import './passport-config.js';
 const app = express();
 
 const corsOptions = {
-  origin: 'https://papergenie.co.in',
+  origin: ['http://localhost:3000','https://papergenie.co.in'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   Headers: true,
   preflightContinue: false,
   optionsSuccessStatus: 204,
-};
+}; 
 app.use(logger('dev'));
 
 app.use(cors(corsOptions));

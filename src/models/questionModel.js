@@ -61,11 +61,7 @@ const questionSchema = new mongoose.Schema({
   optd: {
     type: String,
     default: null      
-  },
-  space: {
-    type: Number,
-    default: null       
-  }      
+  }    
 });
 
 questionSchema.set('timestamps', true); 

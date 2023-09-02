@@ -1,7 +1,7 @@
 import express from 'express';
 import questionRoutes from './routes/questions.js'; 
 import userRoutes from './routes/users.js'
-import './config.js';
+import { store } from './config.js';
 import logger from 'morgan'
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -29,6 +29,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: store,
     cookie: {
       maxAge: 24 * 60 * 60 * 1000, // 1 day
       secure: true, // Set to true in production with HTTPS

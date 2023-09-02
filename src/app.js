@@ -25,21 +25,28 @@ app.use(logger('dev'));
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
-app.use(
-  session({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      maxAge: 24 * 60 * 60 * 1000, // 1 day
-      secure: true, // Set to true in production with HTTPS
-      domain: '.papergenie.co.in',
-    }
-  })
-)
+// app.use(
+//   session({
+//     secret: 'secret',
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//       maxAge: 24 * 60 * 60 * 1000, // 1 day
+//       secure: true, // Set to true in production with HTTPS
+//       domain: '.papergenie.co.in',
+//     }
+//   })
+// )
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: true }
+}));
 
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.authenticate('session'));
 
 
 app.use(express.json());

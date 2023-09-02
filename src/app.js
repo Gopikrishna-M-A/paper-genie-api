@@ -30,7 +30,6 @@ app.use(
     secret: 'secret',
     resave: false,
     saveUninitialized: false,
-    store: store,
     cookie: {
       maxAge: 24 * 60 * 60 * 1000, // 1 day
       secure: true, // Set to true in production with HTTPS

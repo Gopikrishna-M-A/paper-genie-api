@@ -42,7 +42,10 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: true }
+  cookie: { 
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+      domain: '.papergenie.co.in',
+   }
 }));
 
 app.use(passport.initialize());

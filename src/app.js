@@ -17,6 +17,7 @@ const corsOptions = {
   origin: 'https://papergenie.co.in',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
+  Headers: true,
   preflightContinue: false,
   optionsSuccessStatus: 204,
 };

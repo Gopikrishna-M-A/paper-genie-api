@@ -14,7 +14,7 @@ import './passport-config.js';
 const app = express();
 
 const corsOptions = {
-  origin: 'https://paper-genie-client.onrender.com',
+  origin: 'https://papergenie.co.in',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   preflightContinue: false,

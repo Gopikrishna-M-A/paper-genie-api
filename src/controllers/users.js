@@ -74,6 +74,10 @@ export const logout = (req, res) => {
 
 export const check =  (req, res) => {
   console.log("\n auth check :",req.session.passport);
+  console.log('Received GET request with credentials');
+  console.log('Request URL:', req.url);
+  console.log('Request Headers:', req.headers);
+  console.log('Request Cookies:', req.cookies); 
 
   if (req.isAuthenticated()) {
     return res.status(200).json({

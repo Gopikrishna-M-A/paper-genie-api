@@ -33,6 +33,7 @@ app.use(
     cookie: {
       maxAge: 24 * 60 * 60 * 1000, // 1 day
       secure: true, // Set to true in production with HTTPS
+      domain: '.papergenie.co.in',
     }
   })
 )

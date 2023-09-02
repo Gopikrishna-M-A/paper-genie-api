@@ -39,7 +39,7 @@ app.use(cookieParser());
 // )
 
 app.use(session({
-  secret: 'keyboard cat',
+  secret: 'secret-key',
   resave: false,
   saveUninitialized: false,
   cookie: { 

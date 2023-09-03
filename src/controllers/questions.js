@@ -200,6 +200,48 @@ export const filterQuestion = (req, res) => {
 };
 
 
+export const filterRandomQuestion = async(req,res)=> {
+  try {
+    const { difficult, easy, medium, subject } = req.body;
+    const userId = req.user._id; // Assuming you have a user object in the request
+
+    const selectedQuestions = [];
+
+    const userQuestions = await Question.find({ userId, subject })
+    const view = shuffleArray([...userQuestions]);
+
+    const counts = {
+      'Easy': easy,
+      'Moderate': medium,
+      'Difficult': difficult,
+    };
+
+    for (const [level, count] of Object.entries(counts)) {
+      // Filter questions of the current difficulty level
+      const levelQuestions = view.filter((question) => question.Dlevel === level);
+      if (levelQuestions.length < count) {
+        // If there are not enough questions of this difficulty level, send an error response
+        return res.status(400).json({ message: `Not enough ${level} questions available.` });
+      }
+      // Take the required number of questions for this difficulty level
+      for (let i = 0; i < count; i++) {
+        const questionIndex = view.indexOf(levelQuestions[i]);
+        if (questionIndex !== -1) {
+          const question = view.splice(questionIndex, 1)[0];
+          selectedQuestions.push(question);
+        }
+      }
+    }
+
+    // Send the shuffled selected questions as a response
+    res.status(200).json({ message: 'Questions filtered successfully!', matchedQuestions: selectedQuestions });
+  } catch (error) {
+    console.error('Error filtering questions:', error);
+    res.status(500).json({ message: 'An error occurred while filtering questions.' });
+  }
+}
+
+
 
 export const deleteQuestion = async (req, res) => {
     const questionId = req.params.id;

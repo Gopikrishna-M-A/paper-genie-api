@@ -2,7 +2,7 @@ import express from 'express';
 import multer from 'multer'
 import { isLoggedIn } from '../authMiddleware.js';
 const router = express.Router();
-import { getQuestion, getAllQuestions, getQuestionsBySubject, addQuestion, getImage, filterQuestion, deleteQuestion, updateQuestion }  from '../controllers/questions.js';
+import { getQuestion, getAllQuestions, getQuestionsBySubject, addQuestion, getImage, filterQuestion, filterRandomQuestion, deleteQuestion, updateQuestion }  from '../controllers/questions.js';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
@@ -26,6 +26,7 @@ router.get("/", isLoggedIn, getAllQuestions)
 router.get("/subject/:subject", isLoggedIn, getQuestionsBySubject)
 router.post("/", isLoggedIn, upload.single('image'), addQuestion)
 router.post("/filter", isLoggedIn,filterQuestion)
+router.post("/filter/random", isLoggedIn,filterRandomQuestion)
 router.delete("/:id", deleteQuestion)
 router.patch("/:id", updateQuestion)
 router.get("/getImage/:path", getImage)

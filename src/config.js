@@ -31,4 +31,4 @@ mongoose.connect(DB_URI, {
     console.error('MongoDB Session Store Error:', error);
   });
 
- export { mongoose, store };;
+ export { mongoose, store };

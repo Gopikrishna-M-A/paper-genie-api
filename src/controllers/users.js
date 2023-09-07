@@ -9,9 +9,10 @@ export const signup = async (req, res) => {
     try {
       const { values, subjects } = req.body;
       const { username, email, password, phone } = values;
+      const lowercaseUsername = username.toLowerCase();
   
       // Check if the username or email already exists
-      const existingUser = await User.findOne({ $or: [{ username }, { email }] });
+      const existingUser = await User.findOne({ $or: [{ lowercaseUsername }, { email }] });
       if (existingUser) {
         return res.status(400).json({ error: 'Username or email already exists' });
       }
@@ -21,7 +22,7 @@ export const signup = async (req, res) => {
   
       // Create a new user
       const newUser = new User({
-        username,
+        lowercaseUsername,
         email,
         password: hashedPassword,
         phone,

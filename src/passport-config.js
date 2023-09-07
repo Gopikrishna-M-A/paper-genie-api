@@ -7,10 +7,10 @@ passport.use(
   new LocalStrategy(async (username, password, done) => {
     console.log("\n username, password:",username,password);
 
-    const enteredUsername = req.body.username.toLowerCase();
-
+    const enteredUsername = username.toLowerCase();
+    console.log("enteredUsername",enteredUsername);
     try {
-      const user = await User.findOne({ enteredUsername });
+      const user = await User.findOne({ username:enteredUsername });
 
       if (!user) {
         return done(null, false, { message: 'Incorrect username' });
